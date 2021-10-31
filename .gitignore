@@ -1,0 +1,7 @@
+.env
+node_modules
+truffle-config.js
+package.json
+package-lock.json
+migrations
+tests
