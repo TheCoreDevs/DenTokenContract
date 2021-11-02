@@ -9,16 +9,16 @@ import "./Ownable.sol";
 contract DenToken is Ownable, ERC20Capped {
 
     // total den tokens released (that were deposited to this contract)
-    uint72 private _totalReleased;
+    uint private _totalReleased;
 
     // wolf Id => last claim timestamp
     mapping(uint16 => uint64) private _lastClaimTimestamp; // seconds in 24 hours: 86400
 
     // wolf Id => amount minted per wolf
-    mapping(uint16 => uint72) private mintedPerWolf;
+    mapping(uint16 => uint) private mintedPerWolf;
 
     // wolf ID => released amount
-    mapping(uint16 => uint72) private _released;
+    mapping(uint16 => uint) private _released;
     
     // implementing the Wolf Pack genesis tokens contract:
     IWolfPack wolfPackContract;
@@ -43,7 +43,7 @@ contract DenToken is Ownable, ERC20Capped {
         address wolfOwner = wolfPackContract.ownerOf(wolfId);
         require(wolfOwner == msg.sender, "Only the owner of the wolf can call this function");
 
-        (uint72 amountToClaim, uint72 denAvalibleToRelease) = availableDenForWolf(wolfId);
+        (uint amountToClaim, uint denAvalibleToRelease) = availableDenForWolf(wolfId);
 
         if (mintedPerWolf[wolfId] < 36_500e18) { // 36500 den  // if there are tokens avalible to mint for that specific wolf so:
             require(amountToClaim != 0, "No tokens avalible to claim!");
@@ -55,9 +55,9 @@ contract DenToken is Ownable, ERC20Capped {
             } else { // if the there are less tokens to release than the amount to claim:
                 if (denAvalibleToRelease >= 10e18) { // if there are 10 or more tokens avalible to release:
                     // (amount to release) = (amount of 10 den avalible to release)
-                    uint72 denAmountToRelease = (denAvalibleToRelease - (denAvalibleToRelease % 10e18));
+                    uint denAmountToRelease = (denAvalibleToRelease - (denAvalibleToRelease % 10e18));
                     // (amount to mint) = (amount to claim) - (amount of 10 den avalible to release)
-                    uint72 amountToMint = uint72(amountToClaim - denAmountToRelease);
+                    uint amountToMint = uint(amountToClaim - denAmountToRelease);
                     /**
                      * this is calculated like this to prevent complications with minting less than 10 den tokens at a time
                      */
@@ -80,8 +80,8 @@ contract DenToken is Ownable, ERC20Capped {
         }
     }
 
-    function availableDenForWolf(uint16 _wolfId) public view returns(uint72 amountToClaim, uint72 denAvalibleToRelease) {
-        uint72 totalReceived = uint72(balanceOf(address(this)) + _totalReleased);
+    function availableDenForWolf(uint16 _wolfId) public view returns(uint amountToClaim, uint denAvalibleToRelease) {
+        uint totalReceived = uint(balanceOf(address(this)) + _totalReleased);
         denAvalibleToRelease = (totalReceived / 1700) - _released[_wolfId];
 
         if (mintedPerWolf[_wolfId] < 36500e18) { // 36500 den  // if there are tokens avalible to mint for that specific wolf so:
@@ -89,7 +89,7 @@ contract DenToken is Ownable, ERC20Capped {
             if (numberOfDays == block.timestamp / (1 days)) { // checks if nothing was claimed yet
                 amountToClaim = 10e18; // 10 den
             } else {
-                amountToClaim = uint72(numberOfDays * 10e18); // 10 den * days
+                amountToClaim = uint(numberOfDays * 10e18); // 10 den * days
             }
             
             // gets the amount of full den tokens that can be released from the contract balance to that specific wolf \/\/\/
@@ -97,7 +97,7 @@ contract DenToken is Ownable, ERC20Capped {
         } // if there are no tokens to mint, so the amount of den that can be released to that specific wolf will be return what is calculated on the top
     }
 
-    function _mintDen(address _address, uint72 _amount, uint16 _wolfId) private {
+    function _mintDen(address _address, uint _amount, uint16 _wolfId) private {
         _mint(_address, _amount);
         mintedPerWolf[_wolfId] += _amount;
         _lastClaimTimestamp[_wolfId] = uint64(block.timestamp);
