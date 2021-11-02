@@ -23,7 +23,7 @@ contract DenToken is Ownable, ERC20Capped {
     // implementing the Wolf Pack genesis tokens contract:
     IWolfPack wolfPackContract;
 
-    constructor() ERC20("Den Token", "DEN") ERC20Capped(62_050_000) { }
+    constructor() ERC20("Den Token", "DEN") ERC20Capped(62_050_000e18) { }
 
     /**
      * @dev sets the Wolf Pack contract address (genesis wolfs)
@@ -45,7 +45,7 @@ contract DenToken is Ownable, ERC20Capped {
 
         (uint72 amountToClaim, uint72 denAvalibleToRelease) = availableDenForWolf(wolfId);
 
-        if (mintedPerWolf[wolfId] < 36500e18) { // 36500 den  // if there are tokens avalible to mint for that specific wolf so:
+        if (mintedPerWolf[wolfId] < 36_500e18) { // 36500 den  // if there are tokens avalible to mint for that specific wolf so:
             if (denAvalibleToRelease >= amountToClaim) { // if there are more tokens to release than the amount to claim so release the amount to claim
                 _released[wolfId] += amountToClaim;
                 _totalReleased += amountToClaim;
