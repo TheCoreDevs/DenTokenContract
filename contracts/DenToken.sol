@@ -23,7 +23,7 @@ contract DenToken is Ownable, ERC20Capped {
     // implementing the Wolf Pack genesis tokens contract:
     IWolfPack wolfPackContract;
 
-    constructor() ERC20("Den Token", "DEN") ERC20Capped(62050000) { }
+    constructor() ERC20("Den Token", "DEN") ERC20Capped(62_050_000) { }
 
     /**
      * @dev sets the Wolf Pack contract address (genesis wolfs)
