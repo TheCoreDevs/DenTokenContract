@@ -46,6 +46,7 @@ contract DenToken is Ownable, ERC20Capped {
         (uint72 amountToClaim, uint72 denAvalibleToRelease) = availableDenForWolf(wolfId);
 
         if (mintedPerWolf[wolfId] < 36_500e18) { // 36500 den  // if there are tokens avalible to mint for that specific wolf so:
+            require(amountToClaim != 0, "No tokens avalible to claim!");
             if (denAvalibleToRelease >= amountToClaim) { // if there are more tokens to release than the amount to claim so release the amount to claim
                 _released[wolfId] += amountToClaim;
                 _totalReleased += amountToClaim;
