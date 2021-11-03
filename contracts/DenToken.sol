@@ -57,7 +57,7 @@ contract DenToken is Ownable, ERC20Capped {
                     // (amount to release) = (amount of 10 den avalible to release)
                     uint denAmountToRelease = (denAvalibleToRelease - (denAvalibleToRelease % 10e18));
                     // (amount to mint) = (amount to claim) - (amount of 10 den avalible to release)
-                    uint amountToMint = uint(amountToClaim - denAmountToRelease);
+                    uint amountToMint = amountToClaim - denAmountToRelease;
                     /**
                      * this is calculated like this to prevent complications with minting less than 10 den tokens at a time
                      */
@@ -66,6 +66,7 @@ contract DenToken is Ownable, ERC20Capped {
                     _released[wolfId] += denAmountToRelease;
                     _totalReleased += denAmountToRelease;
                     bool success = transferFrom(address(this), wolfOwner, denAmountToRelease);
+                    
                     require(success, "Payment didn't go through!");
                 } else { // if there are no 10 den tokens avalible to release so mint them
                     _mintDen(wolfOwner, amountToClaim, wolfId);
@@ -81,7 +82,7 @@ contract DenToken is Ownable, ERC20Capped {
     }
 
     function availableDenForWolf(uint16 _wolfId) public view returns(uint amountToClaim, uint denAvalibleToRelease) {
-        uint totalReceived = uint(balanceOf(address(this)) + _totalReleased);
+        uint totalReceived = balanceOf(address(this)) + _totalReleased;
         denAvalibleToRelease = (totalReceived / 1700) - _released[_wolfId];
 
             uint64 numberOfDays = uint64((block.timestamp - _lastClaimTimestamp[_wolfId]) / 1 days); // *change to minutes for testing
@@ -89,7 +90,7 @@ contract DenToken is Ownable, ERC20Capped {
         if (mintedPerWolf[_wolfId] < 36_500e18) { // 36500 den  // if there are tokens avalible to mint for that specific wolf so:
                 amountToClaim = 10e18; // 10 den
             } else {
-                amountToClaim = uint(numberOfDays * 10e18); // 10 den * days
+                amountToClaim = numberOfDays * 10e18; // 10 den * days
                 if (amountToClaim + mintedPerWolf[_wolfId] >= 36_500e18) { // if amountToClaim exeeds the amount a wolf can generate so it returns the correct amount
                     amountToClaim = 36_500e18 - mintedPerWolf[_wolfId];
                 }
