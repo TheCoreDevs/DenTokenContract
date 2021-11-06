@@ -85,9 +85,9 @@ contract DenToken is Ownable, ERC20Capped {
         uint totalReceived = balanceOf(address(this)) + _totalReleased;
         denAvalibleToRelease = (totalReceived / 1700) - _released[_wolfId];
 
+        if (mintedPerWolf[_wolfId] < 36_500e18) { // 36500 den  // if there are tokens avalible to mint for that specific wolf so:
             uint64 numberOfDays = uint64((block.timestamp - _lastClaimTimestamp[_wolfId]) / 1 days); // *change to minutes for testing
             if (numberOfDays == block.timestamp / (1 days)) { // checks if nothing was claimed yet
-        if (mintedPerWolf[_wolfId] < 36_500e18) { // 36500 den  // if there are tokens avalible to mint for that specific wolf so:
                 amountToClaim = 10e18; // 10 den
             } else {
                 amountToClaim = numberOfDays * 10e18; // 10 den * days
