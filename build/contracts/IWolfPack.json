@@ -30,20 +30,20 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "// SPDX-License-Identifier: MIT\r\n\r\npragma solidity ^0.8.0;\r\n\r\ninterface IWolfPack {\r\n\r\n    function ownerOf(uint256 tokenId) external view returns (address);\r\n\r\n}\r\n",
-  "sourcePath": "D:\\WolfPackDenContracts\\Den_token\\contracts\\IWolfPack.sol",
+  "sourcePath": "D:\\TheWolfPack\\DenToken\\contracts\\IWolfPack.sol",
   "ast": {
     "absolutePath": "project:/contracts/IWolfPack.sol",
     "exportedSymbols": {
       "IWolfPack": [
-        1428
+        1445
       ]
     },
-    "id": 1429,
+    "id": 1446,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1420,
+        "id": 1437,
         "literals": [
           "solidity",
           "^",
@@ -59,32 +59,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1428,
+        "id": 1445,
         "linearizedBaseContracts": [
-          1428
+          1445
         ],
         "name": "IWolfPack",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "6352211e",
-            "id": 1427,
+            "id": 1444,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "ownerOf",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1423,
+              "id": 1440,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1422,
+                  "id": 1439,
                   "mutability": "mutable",
                   "name": "tokenId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1427,
+                  "scope": 1444,
                   "src": "108:15:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -93,7 +93,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1421,
+                    "id": 1438,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "108:7:9",
@@ -108,16 +108,16 @@
               "src": "107:17:9"
             },
             "returnParameters": {
-              "id": 1426,
+              "id": 1443,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1425,
+                  "id": 1442,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1427,
+                  "scope": 1444,
                   "src": "148:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -126,7 +126,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1424,
+                    "id": 1441,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "148:7:9",
@@ -141,14 +141,14 @@
               ],
               "src": "147:9:9"
             },
-            "scope": 1428,
+            "scope": 1445,
             "src": "91:66:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1429,
+        "scope": 1446,
         "src": "62:100:9"
       }
     ],
@@ -158,15 +158,15 @@
     "absolutePath": "project:/contracts/IWolfPack.sol",
     "exportedSymbols": {
       "IWolfPack": [
-        1428
+        1445
       ]
     },
-    "id": 1429,
+    "id": 1446,
     "license": "MIT",
     "nodeType": "SourceUnit",
     "nodes": [
       {
-        "id": 1420,
+        "id": 1437,
         "literals": [
           "solidity",
           "^",
@@ -182,32 +182,32 @@
         "contractDependencies": [],
         "contractKind": "interface",
         "fullyImplemented": false,
-        "id": 1428,
+        "id": 1445,
         "linearizedBaseContracts": [
-          1428
+          1445
         ],
         "name": "IWolfPack",
         "nodeType": "ContractDefinition",
         "nodes": [
           {
             "functionSelector": "6352211e",
-            "id": 1427,
+            "id": 1444,
             "implemented": false,
             "kind": "function",
             "modifiers": [],
             "name": "ownerOf",
             "nodeType": "FunctionDefinition",
             "parameters": {
-              "id": 1423,
+              "id": 1440,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1422,
+                  "id": 1439,
                   "mutability": "mutable",
                   "name": "tokenId",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1427,
+                  "scope": 1444,
                   "src": "108:15:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -216,7 +216,7 @@
                     "typeString": "uint256"
                   },
                   "typeName": {
-                    "id": 1421,
+                    "id": 1438,
                     "name": "uint256",
                     "nodeType": "ElementaryTypeName",
                     "src": "108:7:9",
@@ -231,16 +231,16 @@
               "src": "107:17:9"
             },
             "returnParameters": {
-              "id": 1426,
+              "id": 1443,
               "nodeType": "ParameterList",
               "parameters": [
                 {
                   "constant": false,
-                  "id": 1425,
+                  "id": 1442,
                   "mutability": "mutable",
                   "name": "",
                   "nodeType": "VariableDeclaration",
-                  "scope": 1427,
+                  "scope": 1444,
                   "src": "148:7:9",
                   "stateVariable": false,
                   "storageLocation": "default",
@@ -249,7 +249,7 @@
                     "typeString": "address"
                   },
                   "typeName": {
-                    "id": 1424,
+                    "id": 1441,
                     "name": "address",
                     "nodeType": "ElementaryTypeName",
                     "src": "148:7:9",
@@ -264,14 +264,14 @@
               ],
               "src": "147:9:9"
             },
-            "scope": 1428,
+            "scope": 1445,
             "src": "91:66:9",
             "stateMutability": "view",
             "virtual": false,
             "visibility": "external"
           }
         ],
-        "scope": 1429,
+        "scope": 1446,
         "src": "62:100:9"
       }
     ],
@@ -283,7 +283,7 @@
   },
   "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-10-19T18:26:10.563Z",
+  "updatedAt": "2021-11-06T15:58:22.660Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
