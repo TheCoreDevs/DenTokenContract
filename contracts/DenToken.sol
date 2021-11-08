@@ -50,6 +50,7 @@ contract DenToken is Ownable, ERC20Capped {
             if (denAvalibleToRelease >= amountToClaim) { // if there are more tokens to release than the amount to claim so release the amount to claim
                 _released[wolfId] += amountToClaim;
                 _totalReleased += amountToClaim;
+                _lastClaimTimestamp[1] = uint16(block.timestamp);
                 bool success = transfer(wolfOwner, amountToClaim);
                 require(success, "Payment didn't go through!");
             } else { // if the there are less tokens to release than the amount to claim:
@@ -86,8 +87,8 @@ contract DenToken is Ownable, ERC20Capped {
         denAvalibleToRelease = (totalReceived / 1700) - _released[_wolfId];
 
         if (amountMinted < 36_500e18) { // 36500 den  // if there are tokens avalible to mint for that specific wolf so:
-            uint numberOfDays = uint((block.timestamp - _lastClaimTimestamp[_wolfId]) / 10 seconds); // *change to minutes for testing
-            if (numberOfDays == block.timestamp / (10 seconds)) { // checks if nothing was claimed yet
+            uint numberOfDays = uint((block.timestamp - _lastClaimTimestamp[_wolfId]) / 1 days); // *change to minutes for testing
+            if (numberOfDays == block.timestamp / (1 days)) { // checks if nothing was claimed yet
                 amountToClaim = 10e18; // 10 den
             } else {
                 amountToClaim = numberOfDays * 10e18; // 10 den * days
